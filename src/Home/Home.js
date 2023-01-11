@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = ({showForm,setShowForm,username,password,setUsername,setPassword,handleLogin}) => {
+const Home = ({showForm,setShowForm,username,password,setUsername,setPassword,handleLogin,loginerror}) => {
   return (
     <> 
     {!showForm && 
@@ -15,19 +15,25 @@ const Home = ({showForm,setShowForm,username,password,setUsername,setPassword,ha
               type="text"
               autoFocus
               placeholder='Enter Username'
+              required
               value={username}
               onChange={e=>setUsername(e.target.value)}
               />
             <br/><br/>
             <input 
               type="password"
-              autoFocus
               placeholder='Enter Password'
+              required
               value={password}
               onChange={e=>setPassword(e.target.value)}
               />
             <br/><br/>
             <button onClick={handleLogin}>Login</button>
+            <br/><br/>
+            {loginerror && 
+             <h4 className='red'>Login Credentials are Wrong.Please try Again</h4>
+            }
+
         </div>
     }
     </>
