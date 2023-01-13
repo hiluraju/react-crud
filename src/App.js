@@ -3,13 +3,16 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 import Dashboard from './Dashboard/Dashboard';
 import Home from './Home/Home';
+import Admin from './Admin/Admin';
 
-function App() {
+const App = () => 
+{
 
   const [showForm,setShowForm]     = useState(false);
   const [username,setUsername]     = useState('');
   const [password,setPassword]     = useState('');
   const [loginerror,setLoginError] = useState(false);
+  const [students,setStudents]     = useState([]);
 
   const history = useHistory();
 
@@ -17,7 +20,16 @@ function App() {
   {
     const authentication = {username : "admin",password : "123321"};
 
-    localStorage.setItem('auth',JSON.stringify(authentication));
+    const dummyStudents = [ 
+      {id : 1, name : "Student-1", marks : 80},   
+      {id : 2, name : "Student-2", marks : 85},   
+      {id : 3, name : "Student-3", marks : 92}   
+    ];
+    
+    localStorage.setItem('auth',JSON.stringify(authentication));    
+    localStorage.setItem('students',JSON.stringify(dummyStudents));
+    
+    setStudents(dummyStudents);
 
   },[])
 
@@ -54,7 +66,14 @@ function App() {
               />
       </Route>
       <Route path="/login" exact>
-        <Dashboard />
+        <Dashboard students= {students}
+                   setStudents = {setStudents}
+        />
+      </Route>      
+      <Route path="/admin" exact>
+        <Admin students= {students}
+                setStudents = {setStudents}
+        />
       </Route>
       </Switch>
       
