@@ -1,24 +1,28 @@
-import { Link } from 'react-router-dom'; 
+import { useEffect } from 'react';
 
 import StudentTable from './StudentTable'
 import StudentGraph from './StudentGraph'
-import { useEffect } from 'react';
+import Nav from './Nav';
 
-const Dashboard = ({students}) => {
+
+const Dashboard = ({students,setStudents}) => {
 
   useEffect(()=>
   {
-    // console.log(students); 
+    const fetchStudents = () =>
+    {
+      const studentList = JSON.parse(localStorage.getItem('students'));    
+      setStudents(studentList);  
+    }
+    fetchStudents();
   },[])
 
   return (
-    <>
+    <>      
+      <Nav/>      
       <div>
-        <h4>DASHBOARD</h4> 
-        <button><Link to="/admin">LOGIN TO ADMIN PANEL</Link></button> 
-      </div>  
-      <br/><br/>
-      <div>
+        <h3>DASHBOARD</h3>     
+        <br/><br/>
         <StudentTable students={students}/>
         <br/><br/>
         <StudentGraph students={students}/>

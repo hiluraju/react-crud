@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Home = ({showForm,setShowForm,username,password,setUsername,setPassword,handleLogin,loginerror}) => {
+const Home = ({showForm,setShowForm,username,password,setUsername,setPassword,handleLogin,loginerror,setLoginError}) => {
+
+  useEffect(() =>
+  {
+    setLoginError(false);
+  },[username,password])
+
   return (
     <> 
     {!showForm && 

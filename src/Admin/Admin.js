@@ -1,32 +1,43 @@
 import React from 'react'
+import Nav from '../Dashboard/Nav'
+import Table from './Table'
 
-const Admin = () => {
+
+const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setStudentMark,handleStudentDataAddition,handleDelete}) => {
   return (
     <div>
-        <h4>ADMIN PANEL</h4>
+        <Nav />
         <div>
+            <h4>ADMIN PANEL</h4>
             <p>STUDENT DETAILS</p>
             <input 
               type="text"
               autoFocus
               placeholder='Enter Student Name'
               required
-            //   value={username}
-            //   onChange={e=>setUsername(e.target.value)}
+              value={studentName}
+              onChange={e=>setStudentName(e.target.value)}
               />
             <br/><br/>
             <input 
               type="number"
               placeholder='Enter Mark'
               required
-            //   value={password}
-            //   onChange={e=>setPassword(e.target.value)}
+              value={studentMark}
+              onChange={e=>setStudentMark(e.target.value)}
                />
             <br/><br/>
             <button 
-            // onClick={handleLogin}
+              onClick={handleStudentDataAddition}
             >
                 Add</button>
+        </div>
+        <hr/>
+        <div>        
+          <Table students={students} 
+               setStudents = {setStudents}
+               handleDelete = {handleDelete}
+          />
         </div>
     </div>
   )

@@ -35,7 +35,7 @@ const StudentGraph = ({students}) => {
     labels : students.map((s)=> s.name),
     datasets: [    
       {
-        label: 'Student Data',
+        label: 'Student Marks',
         data: students.map((s)=> s.marks),
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
