@@ -1,10 +1,12 @@
-import React from 'react'
+import { ButtonGroup,Button } from '@mui/material'
 import { Link } from 'react-router-dom'
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Table = ({students,handleDelete}) => {
   return (
     <div className='cen tbl'>        
-        { students && 
+        { students.length ? ( 
           <table>
               <thead>
                 <tr>
@@ -21,14 +23,16 @@ const Table = ({students,handleDelete}) => {
                     <td>{s.name}</td>
                     <td>{s.marks}</td>
                     <td>
-                        <button><Link to={`/edit/${s.id}`}>Edit</Link></button>
-                        <button onClick={()=>handleDelete(s.id)}>Delete</button>
+                      <ButtonGroup>
+                        <Button variant='contained' color='success' endIcon={<EditIcon/>}><Link to={`/edit/${s.id}`}>Edit</Link></Button>
+                        <Button variant='contained' color='error' endIcon={<DeleteIcon/>} onClick={()=>handleDelete(s.id)}>Delete</Button>
+                      </ButtonGroup>
                     </td>
                   </tr>
                 ))}
               </tbody>
           </table>
-        }
+        ):( <p>No Student Data Avaialable</p>)}
         
     </div>
   )

@@ -21,11 +21,19 @@ const Dashboard = ({students,setStudents}) => {
     <>      
       <Nav/>      
       <div>
-        <h3>DASHBOARD</h3>     
-        <br/><br/>
-        <StudentTable students={students}/>
-        <br/><br/>
-        <StudentGraph students={students}/>
+        <h3>DASHBOARD</h3>  
+        {students.length ?
+        (
+        <>
+          <br/><br/>
+          <StudentTable students={students}/>
+          <br/><br/>
+          <StudentGraph students={students}/>
+        </>    
+        )
+        : (
+          <h4>Students Data Not Avaialable. Please Add From the 'ADMIN'</h4>
+        )}
       </div>    
     </>
   )

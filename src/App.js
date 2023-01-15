@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom'; 
-import './App.css';
+
 import Dashboard from './Dashboard/Dashboard';
 import Home from './Home/Home';
 import Admin from './Admin/Admin';
 import EditStudent from './Admin/EditStudent';
+import './App.css';
 
 
 const App = () => 
 {
 
-  const [showForm,setShowForm]       = useState(false);
-  const [username,setUsername]       = useState('');
-  const [password,setPassword]       = useState('');
-  const [loginerror,setLoginError]   = useState(false);
-  const [students,setStudents]       = useState([]);
-  const [studentName,setStudentName] = useState('');
-  const [studentMark,setStudentMark] = useState('');
+  const [showForm,setShowForm]               = useState(false);
+  const [username,setUsername]               = useState('');
+  const [password,setPassword]               = useState('');
+  const [loginerror,setLoginError]           = useState(false);
+  const [students,setStudents]               = useState([]);
+  const [studentName,setStudentName]         = useState('');
+  const [studentMark,setStudentMark]         = useState('');
   const [editStudentName,setEditStudentName] = useState('');
   const [editStudentMark,setEditStudentMark] = useState('');
 

@@ -1,4 +1,5 @@
-import React from 'react'
+import { TextField,Button } from '@mui/material'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Nav from '../Dashboard/Nav'
 import Table from './Table'
 
@@ -10,7 +11,8 @@ const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setS
         <div>
             <h4>ADMIN PANEL</h4>
             <p>STUDENT DETAILS</p>
-            <input 
+            <TextField 
+              variant='filled'
               type="text"
               autoFocus
               placeholder='Enter Student Name'
@@ -19,7 +21,8 @@ const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setS
               onChange={e=>setStudentName(e.target.value)}
               />
             <br/><br/>
-            <input 
+            <TextField 
+              variant='filled'
               type="number"
               placeholder='Enter Mark'
               required
@@ -27,10 +30,12 @@ const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setS
               onChange={e=>setStudentMark(e.target.value)}
                />
             <br/><br/>
-            <button 
+            <Button variant='contained'
+              color='info'
               onClick={handleStudentDataAddition}
+              endIcon={<AddCircleIcon/>}
             >
-                Add</button>
+                Add</Button>
         </div>
         <hr/>
         <div>        
