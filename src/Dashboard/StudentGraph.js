@@ -43,7 +43,7 @@ const StudentGraph = ({students}) => {
   };
 
   return (
-    <div className='cen w70'>
+    <div className=''>
       <Bar options={options} data={data} />
     </div>
   )

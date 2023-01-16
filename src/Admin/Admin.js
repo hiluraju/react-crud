@@ -1,18 +1,20 @@
-import { TextField,Button } from '@mui/material'
+import { TextField,Button, Typography } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import Nav from '../Dashboard/Nav'
-import Table from './Table'
+import StudentTable from '../Dashboard/StudentTable';
 
 
-const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setStudentMark,handleStudentDataAddition,handleDelete}) => {
+
+const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setStudentMark,handleStudentDataAddition,handleDelete,}) => {
   return (
     <div>
-        <Nav />
         <div>
-            <h4>ADMIN PANEL</h4>
-            <p>STUDENT DETAILS</p>
+            <br/>
+            <Typography variant='h5'>ADMIN PANEL</Typography>
+            <br/>
+            <Typography variant='h6'>NEW STUDENT DETAILS</Typography>
+            <br/>
             <TextField 
-              variant='filled'
+              variant='outlined'
               type="text"
               autoFocus
               placeholder='Enter Student Name'
@@ -22,7 +24,7 @@ const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setS
               />
             <br/><br/>
             <TextField 
-              variant='filled'
+              variant='outlined'
               type="number"
               placeholder='Enter Mark'
               required
@@ -35,11 +37,11 @@ const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setS
               onClick={handleStudentDataAddition}
               endIcon={<AddCircleIcon/>}
             >
-                Add</Button>
+            Add Student Data</Button>
         </div>
-        <hr/>
+        <br/><br/>
         <div>        
-          <Table students={students} 
+          <StudentTable students={students} 
                setStudents = {setStudents}
                handleDelete = {handleDelete}
           />

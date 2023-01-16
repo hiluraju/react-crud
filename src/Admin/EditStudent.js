@@ -1,7 +1,7 @@
+import { Button } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
-import Nav from '../Dashboard/Nav'
+import EditIcon from '@mui/icons-material/Edit';
 
 const EditStudent = ({editStudentName,setEditStudentName,editStudentMark,setEditStudentMark,handleStudentDataEdit}) => {
  
@@ -17,7 +17,6 @@ const EditStudent = ({editStudentName,setEditStudentName,editStudentMark,setEdit
 
   return (
     <>
-        <Nav />
         <div>
             <p>UPDATE STUDENT DETAILS</p>
             <input 
@@ -37,10 +36,13 @@ const EditStudent = ({editStudentName,setEditStudentName,editStudentMark,setEdit
               onChange={e=>setEditStudentMark(e.target.value)}
                />
             <br/><br/>
-            <button 
+            <Button 
+              endIcon={<EditIcon/>}
+              variant='contained'
+              color='info'
               onClick={()=>handleStudentDataEdit(id)}
             >
-                Edit</button>
+                Update</Button>
         </div>
     </>
   )

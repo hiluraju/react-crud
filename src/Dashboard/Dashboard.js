@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-
 import StudentTable from './StudentTable'
 import StudentGraph from './StudentGraph'
-import Nav from './Nav';
 
 
-const Dashboard = ({students,setStudents}) => {
+const Dashboard = ({students,setStudents,handleDelete}) => {
+
 
   useEffect(()=>
   {
@@ -15,18 +14,19 @@ const Dashboard = ({students,setStudents}) => {
       setStudents(studentList);  
     }
     fetchStudents();
+
+
   },[])
 
   return (
     <>      
-      <Nav/>      
       <div>
         <h3>DASHBOARD</h3>  
         {students.length ?
         (
         <>
           <br/><br/>
-          <StudentTable students={students}/>
+          <StudentTable students={students} handleDelete={handleDelete}/>
           <br/><br/>
           <StudentGraph students={students}/>
         </>    
