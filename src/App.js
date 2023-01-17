@@ -10,7 +10,10 @@ import Admin from './Admin/Admin';
 import EditStudent from './Admin/EditStudent';
 import Nav from './Dashboard/Nav';
 import Header from './Home/Header';
+import Missing from './Home/Missing';
+
 import './App.css';
+
 
 const App = () => 
 {
@@ -66,7 +69,7 @@ const App = () =>
   {
     if(studentName && studentMark)
     {
-      const newstudentData = {id : Math.random(), name : studentName, marks : studentMark}
+      const newstudentData = {id : Math.random(), name : studentName.trim(), marks : studentMark.trim()}
       const studentData = JSON.parse(localStorage.getItem("students"));
       studentData.push(newstudentData);
       localStorage.setItem('students',JSON.stringify(studentData));
@@ -89,7 +92,7 @@ const App = () =>
   {
     if(editStudentName && editStudentMark)
     {
-      const updateStudent = {id, name :editStudentName, marks : editStudentMark}
+      const updateStudent = {id, name :editStudentName.trim(), marks : editStudentMark.trim()}
       const Studentdata =  JSON.parse(localStorage.getItem("students"));
       const updateStudentdata =  Studentdata.map((s) => s.id == id ? updateStudent : s);
       localStorage.setItem('students',JSON.stringify(updateStudentdata));
@@ -105,7 +108,7 @@ const App = () =>
     
     <div className="cen">
       <Header/>
-      <Container>
+      <Container maxWidth='md'>
         <Switch>
         <Route path="/" exact>
           <Home showForm = {showForm}
@@ -146,7 +149,8 @@ const App = () =>
                     setEditStudentMark = {setEditStudentMark}
                     handleStudentDataEdit = {handleStudentDataEdit}
           />
-        </Route>   
+        </Route> 
+        <Route path="*" component={Missing} />    
         </Switch>   
       </Container>   
     </div>

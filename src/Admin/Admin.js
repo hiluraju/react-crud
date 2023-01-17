@@ -1,17 +1,19 @@
 import { TextField,Button, Typography } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import StudentTable from '../Dashboard/StudentTable';
+import { Container } from '@mui/system';
+
 
 
 
 const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setStudentMark,handleStudentDataAddition,handleDelete,}) => {
   return (
-    <div>
+    <Container>
         <div>
             <br/>
-            <Typography variant='h5'>ADMIN PANEL</Typography>
+            <h3>ADMIN PANEL</h3>
             <br/>
-            <Typography variant='h6'>NEW STUDENT DETAILS</Typography>
+            <Typography variant='body2' className='fwb'>NEW STUDENT DETAILS</Typography>
             <br/>
             <TextField 
               variant='outlined'
@@ -46,7 +48,7 @@ const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setS
                handleDelete = {handleDelete}
           />
         </div>
-    </div>
+    </Container>
   )
 
 }

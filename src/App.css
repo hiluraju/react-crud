@@ -33,6 +33,11 @@
     background-color: lightseagreen;
 }
 
+.lightgreen
+{
+    background-color: aqua;
+}
+
 .mb2
 {
     margin-bottom: 2% !important;;
@@ -43,7 +48,3 @@
     font-weight: bold !important;
 }
 
-.bb
-{
-    border: 2px solid black;
-}

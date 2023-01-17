@@ -18,7 +18,7 @@ const EditStudent = ({editStudentName,setEditStudentName,editStudentMark,setEdit
   return (
     <>
         <div>
-            <p>UPDATE STUDENT DETAILS</p>
+            <h3>UPDATE STUDENT DETAILS</h3>
             <input 
               type="text"
               autoFocus

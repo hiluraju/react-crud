@@ -30,7 +30,7 @@ const StudentTable = ({students,handleDelete}) => {
                   <TableCell className='fwb'>STUDENT</TableCell>
                   <TableCell className='fwb'>MARKS</TableCell>
                   { adminpage && 
-                    <TableCell className='fwb'>Actions</TableCell>
+                    <TableCell className='fwb'>ACTIONS</TableCell>
                   }
                   
                   </TableRow>
