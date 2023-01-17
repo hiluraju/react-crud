@@ -1,11 +1,16 @@
+import React, { useEffect,useState } from 'react'
+import { useParams,useHistory } from 'react-router-dom'
 import { Button } from '@mui/material'
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import EditIcon from '@mui/icons-material/Edit';
 
-const EditStudent = ({editStudentName,setEditStudentName,editStudentMark,setEditStudentMark,handleStudentDataEdit}) => {
+
+const EditStudent = () => {
  
     const {id} = useParams();
+    const history = useHistory();
+
+    const [editStudentName,setEditStudentName] = useState('');
+    const [editStudentMark,setEditStudentMark] = useState('');
 
   useEffect(()=>
   {
@@ -14,6 +19,21 @@ const EditStudent = ({editStudentName,setEditStudentName,editStudentMark,setEdit
     setEditStudentName(specificStudentData[0].name);
     setEditStudentMark(specificStudentData[0].marks);
   },[])
+
+  const handleStudentDataEdit = id =>
+  {
+    if(editStudentName && editStudentMark)
+    {
+      const updateStudent = {id, name :editStudentName.trim(), marks : editStudentMark.trim()}
+      const Studentdata =  JSON.parse(localStorage.getItem("students"));
+      const updateStudentdata =  Studentdata.map((s) => s.id == id ? updateStudent : s);
+      localStorage.setItem('students',JSON.stringify(updateStudentdata));
+      setEditStudentName('');
+      setEditStudentMark('');
+      history.push("/login");
+    }
+    return;
+  }
 
   return (
     <>
@@ -41,8 +61,7 @@ const EditStudent = ({editStudentName,setEditStudentName,editStudentMark,setEdit
               variant='contained'
               color='info'
               onClick={()=>handleStudentDataEdit(id)}
-            >
-                Update</Button>
+            > Update</Button>
         </div>
     </>
   )

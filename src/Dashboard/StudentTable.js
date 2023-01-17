@@ -1,4 +1,7 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import { Link,useLocation,useHistory } from 'react-router-dom'
+import { ButtonGroup,Button } from '@mui/material'
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,15 +12,23 @@ import Paper from '@mui/material/Paper';
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link,useLocation } from 'react-router-dom'
-import { ButtonGroup,Button } from '@mui/material'
+import DataContext from '../Context/DataContext';
 
 
-const StudentTable = ({students,handleDelete}) => {
+const StudentTable = () => {
 
+  const {students} = useContext(DataContext);
+  const history = useHistory();
   const location = useLocation();
-
   const adminpage = location.pathname == "/admin" ? true : false;
+
+  const handleDelete = id =>
+  {
+    const studentData = JSON.parse(localStorage.getItem("students"));
+    const newStudentData = studentData.filter((s) => s.id != id );
+    localStorage.setItem('students',JSON.stringify(newStudentData));
+    history.push("/login");
+  }
 
 
   return (

@@ -1,14 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { Button, TextField } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { useHistory } from 'react-router-dom';
 
-const Home = ({showForm,setShowForm,username,password,setUsername,setPassword,handleLogin,loginerror,setLoginError}) => {
+const Home = () => {
+  
+const [showForm,setShowForm] = useState(false);
+const [username,setUsername] = useState('');
+const [password,setPassword] = useState('');
+const [loginerror,setLoginError] = useState(false);
 
+const history = useHistory();
+  
   useEffect(() =>
   {
     setLoginError(false);
   },[username,password])
+
+  const handleLogin = () =>
+  {    
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    if(username.trim() == auth.username && password.trim() == auth.password)
+    {
+      setLoginError(false);
+      setUsername('');
+      setPassword('');
+      history.push("/login")
+    }
+    else
+    {
+      setUsername('');
+      setPassword('');
+      setLoginError(true);
+    }
+  }
+
+  
 
   return (
     <> 

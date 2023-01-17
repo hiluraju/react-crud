@@ -1,10 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect,useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import StudentTable from './StudentTable'
 import StudentGraph from './StudentGraph'
+import DataContext from '../Context/DataContext';
+ 
+const Dashboard = () => {
 
+  const {students,setStudents} = useContext(DataContext);
 
-const Dashboard = ({students,setStudents,handleDelete}) => {
+  const history = useHistory();
 
+  const handleDelete = id =>
+  {
+    const studentData = JSON.parse(localStorage.getItem("students"));
+    const newStudentData = studentData.filter((s) => s.id != id );
+    localStorage.setItem('students',JSON.stringify(newStudentData));
+    history.push("/login");
+  }
 
   useEffect(()=>
   {
@@ -14,8 +27,6 @@ const Dashboard = ({students,setStudents,handleDelete}) => {
       setStudents(studentList);  
     }
     fetchStudents();
-
-
   },[])
 
   return (

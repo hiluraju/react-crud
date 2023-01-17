@@ -1,12 +1,32 @@
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { TextField,Button, Typography } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+
 import StudentTable from '../Dashboard/StudentTable';
 import { Container } from '@mui/system';
 
+const Admin = () => {
 
+  const [studentName,setStudentName] = useState('');
+  const [studentMark,setStudentMark] = useState('');
+  const history = useHistory();
 
+  const handleStudentDataAddition = () =>
+  {
+    if(studentName && studentMark)
+    {
+      const newstudentData = {id : Math.random(), name : studentName.trim(), marks : studentMark.trim()}
+      const studentData = JSON.parse(localStorage.getItem("students"));
+      studentData.push(newstudentData);
+      localStorage.setItem('students',JSON.stringify(studentData));
+      setStudentName('');
+      setStudentMark('');
+      history.push("/login")
+    }
+    return;
+  }
 
-const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setStudentMark,handleStudentDataAddition,handleDelete,}) => {
   return (
     <Container>
         <div>
@@ -38,15 +58,11 @@ const Admin = ({students,setStudents,studentName,setStudentName,studentMark,setS
               color='info'
               onClick={handleStudentDataAddition}
               endIcon={<AddCircleIcon/>}
-            >
-            Add Student Data</Button>
+            > Add Student Data</Button>
         </div>
         <br/><br/>
         <div>        
-          <StudentTable students={students} 
-               setStudents = {setStudents}
-               handleDelete = {handleDelete}
-          />
+          <StudentTable/>
         </div>
     </Container>
   )
