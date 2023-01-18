@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import { useHistory } from 'react-router-dom'
 import { TextField,Button, Typography } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import StudentTable from '../Dashboard/StudentTable';
 import { Container } from '@mui/system';
+import DataContext from '../Context/DataContext';
 
 const Admin = () => {
 
+  const {setStudents}                = useContext(DataContext);
   const [studentName,setStudentName] = useState('');
   const [studentMark,setStudentMark] = useState('');
   const history = useHistory();
@@ -20,6 +22,7 @@ const Admin = () => {
       const studentData = JSON.parse(localStorage.getItem("students"));
       studentData.push(newstudentData);
       localStorage.setItem('students',JSON.stringify(studentData));
+      setStudents(studentData);
       setStudentName('');
       setStudentMark('');
       history.push("/login")

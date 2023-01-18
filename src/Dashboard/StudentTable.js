@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+import {useContext} from 'react'
 import { Link,useLocation,useHistory } from 'react-router-dom'
 import { ButtonGroup,Button } from '@mui/material'
 
@@ -17,16 +17,17 @@ import DataContext from '../Context/DataContext';
 
 const StudentTable = () => {
 
-  const {students} = useContext(DataContext);
+  const {students,setStudents} = useContext(DataContext);
   const history = useHistory();
   const location = useLocation();
   const adminpage = location.pathname == "/admin" ? true : false;
 
   const handleDelete = id =>
   {
-    const studentData = JSON.parse(localStorage.getItem("students"));
-    const newStudentData = studentData.filter((s) => s.id != id );
+
+    const newStudentData = students.filter((s) => s.id != id );    
     localStorage.setItem('students',JSON.stringify(newStudentData));
+    setStudents(newStudentData);
     history.push("/login");
   }
 
@@ -35,7 +36,7 @@ const StudentTable = () => {
     <div>        
         { students && 
           <TableContainer component={Paper}>
-            <Table aria-label="simple table">
+            <Table>
               <TableHead>
                 <TableRow>
                   <TableCell className='fwb'>STUDENT</TableCell>

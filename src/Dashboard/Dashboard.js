@@ -1,5 +1,4 @@
 import { useEffect,useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import StudentTable from './StudentTable'
 import StudentGraph from './StudentGraph'
@@ -8,16 +7,6 @@ import DataContext from '../Context/DataContext';
 const Dashboard = () => {
 
   const {students,setStudents} = useContext(DataContext);
-
-  const history = useHistory();
-
-  const handleDelete = id =>
-  {
-    const studentData = JSON.parse(localStorage.getItem("students"));
-    const newStudentData = studentData.filter((s) => s.id != id );
-    localStorage.setItem('students',JSON.stringify(newStudentData));
-    history.push("/login");
-  }
 
   useEffect(()=>
   {
@@ -37,7 +26,7 @@ const Dashboard = () => {
         (
         <>
           <br/><br/>
-          <StudentTable students={students} handleDelete={handleDelete}/>
+          <StudentTable/>
           <br/><br/>
           <StudentGraph students={students}/>
         </>    

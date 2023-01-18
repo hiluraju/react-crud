@@ -1,5 +1,4 @@
 import { useState,useEffect,createContext } from "react";
-
 const DataContext = createContext({});
 
 export const DataProvider = ({children}) =>
@@ -15,7 +14,7 @@ export const DataProvider = ({children}) =>
   {
     const authentication = {username : "admin",password : "123321"};      
     localStorage.setItem('auth',JSON.stringify(authentication));    
-    if(students.length <= 0)
+    if(students.length == 0)
     {
       localStorage.setItem('students',JSON.stringify(dummyStudents));
       setStudents(dummyStudents);
@@ -26,7 +25,7 @@ export const DataProvider = ({children}) =>
     <DataContext.Provider value={{
       students,setStudents
     }}>
-      {children}
+         {children}
     </DataContext.Provider>
   );
 

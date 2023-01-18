@@ -1,8 +1,12 @@
-import React from 'react'
+import  { useContext } from 'react'
 import { Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-const StudentGraph = ({students}) => {
+import DataContext from '../Context/DataContext';
+
+const StudentGraph = () => {
+
+  const {students} = useContext(DataContext);
 
   ChartJS.register(CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend);
   
