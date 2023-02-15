@@ -5,17 +5,17 @@ import Typography from '@mui/material/Typography';
 
 
 const Header = () => {
-  return (
-    <Box sx={{ flexGrow: 1 }} className="mb2">
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="fwb">
+    return (
+        <Box sx={{ flexGrow: 1 }} className="mb2">
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="fwb">
             REACT CRUD
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
-  );
-}
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+        </Box>
+    );
+};
 
-export default Header
+export default Header;

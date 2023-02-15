@@ -15,33 +15,33 @@ import './App.css';
 
 const App = () => 
 {
-  return (    
-    <div className="cen">
-      <Header/>
-      <Container maxWidth='md'>
-        <DataProvider>
-          <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/login" exact>
-            <Nav/>
-            <Dashboard />
-          </Route>      
-          <Route path="/admin" exact>
-          <Nav/>
-            <Admin/>
-          </Route>
-          <Route path="/edit/:id" exact>
-          <Nav/>
-            <EditStudent />
-          </Route> 
-          <Route path="*" component={Missing} />    
-          </Switch>   
-        </DataProvider>
-      </Container>   
-    </div>
-  );
-}
+    return (    
+        <div className="cen">
+            <Header/>
+            <Container maxWidth='md'>
+                <DataProvider>
+                    <Switch>
+                        <Route path="/" exact>
+                            <Home />
+                        </Route>
+                        <Route path="/login" exact>
+                            <Nav/>
+                            <Dashboard />
+                        </Route>      
+                        <Route path="/admin" exact>
+                            <Nav/>
+                            <Admin/>
+                        </Route>
+                        <Route path="/edit/:id" exact>
+                            <Nav/>
+                            <EditStudent />
+                        </Route> 
+                        <Route path="*" component={Missing} />    
+                    </Switch>   
+                </DataProvider>
+            </Container>   
+        </div>
+    );
+};
 
 export default App;

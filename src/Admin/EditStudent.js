@@ -1,6 +1,6 @@
-import React, { useEffect,useState } from 'react'
-import { useParams,useHistory } from 'react-router-dom'
-import { Button } from '@mui/material'
+import React, { useEffect,useState } from 'react';
+import { useParams,useHistory } from 'react-router-dom';
+import { Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
 
@@ -12,59 +12,62 @@ const EditStudent = () => {
     const [editStudentName,setEditStudentName] = useState('');
     const [editStudentMark,setEditStudentMark] = useState('');
 
-  useEffect(()=>
-  {
-    const studentData = JSON.parse(localStorage.getItem("students"));
-    const specificStudentData = studentData.filter((s) => s.id == id)
-    setEditStudentName(specificStudentData[0].name);
-    setEditStudentMark(specificStudentData[0].marks);
-  },[])
+    const canEdit = Boolean(editStudentName) && Boolean(editStudentMark);
 
-  const handleStudentDataEdit = id =>
-  {
-    if(editStudentName && editStudentMark)
+    useEffect(()=>
     {
-      const updateStudent = {id, name :editStudentName.trim(), marks : editStudentMark.trim()}
-      const Studentdata =  JSON.parse(localStorage.getItem("students"));
-      const updateStudentdata =  Studentdata.map((s) => s.id == id ? updateStudent : s);
-      localStorage.setItem('students',JSON.stringify(updateStudentdata));
-      setEditStudentName('');
-      setEditStudentMark('');
-      history.push("/login");
-    }
-    return;
-  }
+        const studentData = JSON.parse(localStorage.getItem('students'));
+        const specificStudentData = studentData.filter((s) => s.id == id);
+        setEditStudentName(specificStudentData[0].name);
+        setEditStudentMark(specificStudentData[0].marks);
+    },[]);
 
-  return (
-    <>
-        <div>
-            <h3>UPDATE STUDENT DETAILS</h3>
-            <input 
-              type="text"
-              autoFocus
-              placeholder='Enter Student Name'
-              required
-              value={editStudentName}
-              onChange={e=>setEditStudentName(e.target.value)}
-              />
-            <br/><br/>
-            <input 
-              type="number"
-              placeholder='Enter Mark'
-              required
-              value={editStudentMark}
-              onChange={e=>setEditStudentMark(e.target.value)}
-               />
-            <br/><br/>
-            <Button 
-              endIcon={<EditIcon/>}
-              variant='contained'
-              color='info'
-              onClick={()=>handleStudentDataEdit(id)}
-            > Update</Button>
-        </div>
-    </>
-  )
-}
+    const handleStudentDataEdit = id =>
+    {
+        if(editStudentName && editStudentMark)
+        {
+            const updateStudent = {id, name :editStudentName.trim(), marks : editStudentMark.trim()};
+            const Studentdata =  JSON.parse(localStorage.getItem('students'));
+            const updateStudentdata =  Studentdata.map((s) => s.id == id ? updateStudent : s);
+            localStorage.setItem('students',JSON.stringify(updateStudentdata));
+            setEditStudentName('');
+            setEditStudentMark('');
+            history.push('/login');
+        }
+        return;
+    };
 
-export default EditStudent
+    return (
+        <>
+            <div>
+                <h3>UPDATE STUDENT DETAILS</h3>
+                <input 
+                    type="text"
+                    autoFocus
+                    placeholder='Enter Student Name'
+                    required
+                    value={editStudentName}
+                    onChange={e=>setEditStudentName(e.target.value)}
+                />
+                <br/><br/>
+                <input 
+                    type="number"
+                    placeholder='Enter Mark'
+                    required
+                    value={editStudentMark}
+                    onChange={e=>setEditStudentMark(e.target.value)}
+                />
+                <br/><br/>
+                <Button 
+                    endIcon={<EditIcon/>}
+                    variant='contained'
+                    color='info'
+                    onClick={()=>handleStudentDataEdit(id)}
+                    disabled={!canEdit}
+                > Update</Button>
+            </div>
+        </>
+    );
+};
+
+export default EditStudent;
