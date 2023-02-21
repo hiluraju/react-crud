@@ -21,7 +21,7 @@ const history = useHistory();
   const handleLogin = () =>
   {    
     const auth = JSON.parse(localStorage.getItem("auth"));
-    if(username.trim() == auth.username && password.trim() == auth.password)
+    if(username.trim() === auth.username && password.trim() === auth.password)
     {
       setLoginError(false);
       setUsername('');

@@ -16,7 +16,7 @@ const Dashboard = () => {
       setStudents(studentList);  
     }
     fetchStudents();
-  },[])
+  },[setStudents])
 
   return (
     <>      

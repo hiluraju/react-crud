@@ -20,12 +20,12 @@ const StudentTable = () => {
   const {students,setStudents} = useContext(DataContext);
   const history = useHistory();
   const location = useLocation();
-  const adminpage = location.pathname == "/admin" ? true : false;
+  const adminpage = location.pathname === "/admin" ? true : false;
 
   const handleDelete = id =>
   {
 
-    const newStudentData = students.filter((s) => s.id != id );    
+    const newStudentData = students.filter((s) => s.id.toString() !== id );    
     localStorage.setItem('students',JSON.stringify(newStudentData));
     setStudents(newStudentData);
     history.push("/login");

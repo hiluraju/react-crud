@@ -15,7 +15,7 @@ const EditStudent = () => {
   useEffect(()=>
   {
     const studentData = JSON.parse(localStorage.getItem("students"));
-    const specificStudentData = studentData.filter((s) => s.id == id)
+    const specificStudentData = studentData.filter((s) => s.id.toString() == id)
     setEditStudentName(specificStudentData[0].name);
     setEditStudentMark(specificStudentData[0].marks);
   },[])
@@ -26,7 +26,7 @@ const EditStudent = () => {
     {
       const updateStudent = {id, name :editStudentName.trim(), marks : editStudentMark.trim()}
       const Studentdata =  JSON.parse(localStorage.getItem("students"));
-      const updateStudentdata =  Studentdata.map((s) => s.id == id ? updateStudent : s);
+      const updateStudentdata =  Studentdata.map((s) => s.id.toString() === id ? updateStudent : s);
       localStorage.setItem('students',JSON.stringify(updateStudentdata));
       setEditStudentName('');
       setEditStudentMark('');
