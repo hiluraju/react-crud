@@ -24,8 +24,7 @@ const StudentTable = () => {
 
   const handleDelete = id =>
   {
-
-    const newStudentData = students.filter((s) => s.id.toString() !== id );    
+    const newStudentData = students.filter((s) => s.id !== id );    
     localStorage.setItem('students',JSON.stringify(newStudentData));
     setStudents(newStudentData);
     history.push("/login");
@@ -34,7 +33,7 @@ const StudentTable = () => {
 
   return (
     <div>        
-        { students && 
+        { students.length > 0 && 
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
