@@ -18,7 +18,7 @@ const EditStudent = () => {
     const specificStudentData = studentData.filter((s) => s.id.toString() === id)
     setEditStudentName(specificStudentData[0].name);
     setEditStudentMark(specificStudentData[0].marks);
-  },[])
+  },[id])
 
   const handleStudentDataEdit = id =>
   {
